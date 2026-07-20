@@ -1,0 +1,340 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* Body */
+
+body{
+    background:#eef3f9;
+    color:#333;
+}
+
+/* Login */
+
+.login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#0a4ba8,#2a7de1);
+}
+
+.login-box{
+    width:350px;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.bank-logo{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.login-box h1{
+    color:#0a4ba8;
+    margin-bottom:5px;
+}
+
+.login-box p{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    background:#0a4ba8;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.login-box button:hover{
+    background:#083b83;
+}
+
+.demo{
+    margin-top:20px;
+    font-size:14px;
+    color:#666;
+}
+
+/* Header */
+
+header{
+    background:#0a4ba8;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.date-time{
+    text-align:right;
+    font-size:14px;
+}
+
+/* Buttons */
+
+button{
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dark-btn,
+.logout-btn{
+    border:none;
+    border-radius:8px;
+    padding:10px 15px;
+    color:white;
+}
+
+.dark-btn{
+    background:#222;
+}
+
+.logout-btn{
+    background:#d32f2f;
+}
+
+.dark-btn:hover{
+    background:#000;
+}
+
+.logout-btn:hover{
+    background:#b71c1c;
+}
+
+/* Notification */
+
+.notification{
+    position:relative;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.notification span{
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:red;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:11px;
+}
+
+/* Container */
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+/* Balance Card */
+
+.balance-card{
+    background:linear-gradient(135deg,#003c8f,#1565c0,#42a5f5);
+    color:white;
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+.chip{
+    width:55px;
+    height:40px;
+    background:gold;
+    border-radius:8px;
+    margin-bottom:25px;
+}
+
+.balance-card h1{
+    font-size:40px;
+    margin:10px 0;
+}
+
+.balance-card p{
+    margin-top:5px;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+.card h2{
+    color:#0a4ba8;
+    margin-bottom:15px;
+}
+
+/* Inputs */
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+/* Action Cards */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+/* Main Buttons */
+
+.card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1565c0;
+    color:white;
+    font-size:15px;
+}
+
+.card button:hover{
+    background:#0d47a1;
+}
+
+/* Recent Transactions */
+
+#history p{
+    color:#666;
+}
+
+.transaction{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+/* Notification Panel */
+
+.notification-panel{
+    position:fixed;
+    right:25px;
+    top:80px;
+    width:300px;
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    display:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+.notification-panel h3{
+    color:#0a4ba8;
+    margin-bottom:10px;
+}
+
+.notification-panel ul{
+    list-style:none;
+}
+
+.notification-panel li{
+    padding:10px 0;
+    border-bottom:1px solid #ddd;
+}
+
+/* Dark Mode */
+
+.dark-mode{
+    background:#101827;
+    color:white;
+}
+
+.dark-mode header{
+    background:#0b1220;
+}
+
+.dark-mode .card,
+.dark-mode .notification-panel{
+    background:#1f2937;
+    color:white;
+}
+
+.dark-mode input{
+    background:#374151;
+    color:white;
+    border:1px solid #555;
+}
+
+.dark-mode .balance-card{
+    background:linear-gradient(135deg,#111827,#1e3a8a,#2563eb);
+}
+
+.dark-mode .card h2{
+    color:#90caf9;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+}
+
+.header-right{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.balance-card h1{
+    font-size:30px;
+}
+
+}
