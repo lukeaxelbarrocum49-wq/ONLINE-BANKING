@@ -1,0 +1,356 @@
+// ==============================
+// ONLINE BANKING SYSTEM
+// ==============================
+
+let balance = 5000;
+let history = [];
+let notifications = [];
+
+// ------------------------------
+// LOGIN
+// ------------------------------
+function login(){
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    if(username==="Lukeaxel" && password==="Luke123"){
+
+        localStorage.setItem("lastLogin",new Date().toLocaleString());
+
+        window.location.href="dashboard.html";
+
+    }else{
+
+        document.getElementById("message").innerHTML=
+        "Invalid Username or Password.";
+
+    }
+
+}
+
+// ------------------------------
+// LOAD DASHBOARD
+// ------------------------------
+function loadDashboard(){
+
+    updateBalance();
+
+    updateDateTime();
+
+    setInterval(updateDateTime,1000);
+
+    showLastLogin();
+
+    updateHistory();
+
+    updateNotifications();
+
+}
+
+// ------------------------------
+// DATE & TIME
+// ------------------------------
+function updateDateTime(){
+
+    let now=new Date();
+
+    document.getElementById("date").innerHTML=
+    now.toLocaleDateString();
+
+    document.getElementById("time").innerHTML=
+    now.toLocaleTimeString();
+
+}
+
+// ------------------------------
+// BALANCE
+// ------------------------------
+function updateBalance(){
+
+    document.getElementById("balance").innerHTML=
+    "₱"+balance.toLocaleString("en-PH",{
+        minimumFractionDigits:2
+    });
+
+}
+
+// ------------------------------
+// LAST LOGIN
+// ------------------------------
+function showLastLogin(){
+
+    let login=localStorage.getItem("lastLogin");
+
+    if(login){
+
+        document.getElementById("lastLogin").innerHTML=login;
+
+    }else{
+
+        document.getElementById("lastLogin").innerHTML=
+        "First Login";
+
+    }
+
+}
+
+// ------------------------------
+// DEPOSIT
+// ------------------------------
+function deposit(){
+
+    let amount=Number(document.getElementById("depositAmount").value);
+
+    if(amount<=0 || isNaN(amount)){
+
+        alert("Please enter a valid amount.");
+
+        return;
+
+    }
+
+    balance+=amount;
+
+    history.unshift(
+        "💰 Deposit: +₱"+amount.toLocaleString()
+    );
+
+    notifications.unshift(
+        "Deposit Successful"
+    );
+
+    updateBalance();
+
+    updateHistory();
+
+    updateNotifications();
+
+    document.getElementById("depositAmount").value="";
+
+}
+
+// ------------------------------
+// WITHDRAW
+// ------------------------------
+function withdraw(){
+
+    let amount=Number(document.getElementById("withdrawAmount").value);
+
+    if(amount<=0 || isNaN(amount)){
+
+        alert("Please enter a valid amount.");
+
+        return;
+
+    }
+
+    if(amount>balance){
+
+        alert("Insufficient Balance.");
+
+        return;
+
+    }
+
+    balance-=amount;
+
+    history.unshift(
+        "💸 Withdraw: -₱"+amount.toLocaleString()
+    );
+
+    notifications.unshift(
+        "Withdrawal Successful"
+    );
+
+    updateBalance();
+
+    updateHistory();
+
+    updateNotifications();
+
+    document.getElementById("withdrawAmount").value="";
+
+}
+
+// ------------------------------
+// TRANSFER
+// ------------------------------
+function transfer(){
+
+    let receiver=document.getElementById("receiver").value.trim();
+
+    let amount=Number(document.getElementById("transferAmount").value);
+
+    if(receiver===""){
+
+        alert("Enter receiver name.");
+
+        return;
+
+    }
+
+    if(amount<=0 || isNaN(amount)){
+
+        alert("Enter a valid amount.");
+
+        return;
+
+    }
+
+    if(amount>balance){
+
+        alert("Insufficient Balance.");
+
+        return;
+
+    }
+
+    balance-=amount;
+
+    history.unshift(
+        "📤 Transfer to "+receiver+
+        " -₱"+amount.toLocaleString()
+    );
+
+    notifications.unshift(
+        "Money transferred to "+receiver
+    );
+
+    updateBalance();
+
+    updateHistory();
+
+    updateNotifications();
+
+    document.getElementById("receiver").value="";
+    document.getElementById("transferAmount").value="";
+
+}
+
+// ------------------------------
+// RECENT TRANSACTIONS
+// ------------------------------
+function updateHistory(){
+
+    let historyBox=document.getElementById("history");
+
+    historyBox.innerHTML="";
+
+    if(history.length===0){
+
+        historyBox.innerHTML="<p>No transactions yet.</p>";
+
+        return;
+
+    }
+
+    history.forEach(function(item){
+
+        historyBox.innerHTML+=`
+        <div class="transaction">
+            ${item}
+        </div>
+        `;
+
+    });
+
+}
+
+// ------------------------------
+// NOTIFICATIONS
+// ------------------------------
+function updateNotifications(){
+
+    document.getElementById("notificationCount").innerHTML=
+    notifications.length;
+
+    let list=document.getElementById("notificationList");
+
+    list.innerHTML="";
+
+    if(notifications.length===0){
+
+        list.innerHTML="<li>No Notifications</li>";
+
+        return;
+
+    }
+
+    notifications.forEach(function(item){
+
+        list.innerHTML+=`<li>${item}</li>`;
+
+    });
+
+}
+
+function toggleNotifications(){
+
+    let panel=document.getElementById("notificationPanel");
+
+    if(panel.style.display==="block"){
+
+        panel.style.display="none";
+
+    }else{
+
+        panel.style.display="block";
+
+    }
+
+}
+
+// ------------------------------
+// DARK MODE
+// ------------------------------
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark-mode");
+
+}
+
+// ------------------------------
+// LOGOUT
+// ------------------------------
+function logout(){
+
+    if(confirm("Are you sure you want to logout?")){
+
+        window.location.href="index.html";
+
+    }
+
+}
+function logout() {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        // Display a message
+        document.body.innerHTML = `
+            <div style="
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
+                background:#0A4BA8;
+                color:white;
+                font-family:Arial,sans-serif;
+                text-align:center;
+            ">
+                <div>
+                    <h1>🏦 Online Banking</h1>
+                    <h2>Thank you for using our Online Banking System.</h2>
+                    <p>You have been logged out successfully.</p>
+                    <p>Redirecting to the login page...</p>
+                </div>
+            </div>
+        `;
+
+        // Return to login page after 3 seconds
+        setTimeout(function () {
+            window.location.href = "index.html";
+        }, 3000);
+    }
+
+}
